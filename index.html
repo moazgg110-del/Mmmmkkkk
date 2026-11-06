@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#07122e">
+  <title>رحلة الفضاء اللانهائية</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="space-bg" aria-hidden="true"><canvas id="stars"></canvas><div class="nebula"></div></div>
+  <header class="topbar">
+    <div class="resource"><span>⭐</span><b id="coins">0</b><small>نجمة</small></div>
+    <div class="resource"><span>💎</span><b id="crystals">0</b><small>بلورة</small></div>
+    <div class="resource"><span>❤️</span><b id="lives">5</b><small>محاولة</small></div>
+    <div class="top-actions"><button class="icon-btn" id="soundBtn" title="الصوت">🔊</button><button class="icon-btn" id="themeBtn" title="الوضع الليلي">🌙</button><button class="icon-btn" id="settingsBtn" title="الإعدادات">⚙️</button></div>
+  </header>
+
+  <main>
+    <section id="homeScreen" class="screen active">
+      <div class="hero">
+        <div class="hero-art"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="planet planet-big"></div><div class="planet planet-small"></div><div class="astronaut">👨‍🚀</div><div class="ship">🚀</div><div class="floating-star">✦</div></div>
+        <div class="hero-copy">
+          <div class="eyebrow">🚀 مغامرة لا تنتهي في أعماق الكون</div>
+          <h1>رحلة الفضاء <span>اللانهائية</span></h1>
+          <p>اكتشف كواكب مجهولة، حل الألغاز، واجمع النجوم لتصبح أسطورة المجرة!</p>
+          <div class="stats-strip"><span>🪐 1200 مرحلة</span><span>🧠 1000+ سؤال</span><span>🎨 عوالم متجددة</span></div>
+          <button class="main-btn" id="continueBtn">ابدأ المغامرة <b>◀</b></button>
+          <div class="menu-buttons">
+            <button class="menu-btn blue" data-screen="levelsScreen">🗺️ اختيار المرحلة</button>
+            <button class="menu-btn purple" data-screen="statsScreen">📊 إحصائياتي</button>
+            <button class="menu-btn green" data-screen="achievementsScreen">🏆 الإنجازات</button>
+            <button class="menu-btn cyan" data-screen="aboutScreen">📖 عن اللعبة</button>
+          </div>
+        </div>
+      </div>
+      <div class="home-bottom">
+        <div class="daily-card"><div class="gift">🎁</div><div><b>مكافأة المستكشف اليومية</b><small>اجمع هديتك وواصل رحلتك</small></div><button id="dailyBtn">استلام</button></div>
+        <div class="feature-card"><span>🌌</span><b>مجرات كثيرة</b><small>عوالم وألوان مختلفة</small></div>
+        <div class="feature-card"><span>🧩</span><b>تحديات متنوعة</b><small>أسئلة ومهام وألغاز</small></div>
+        <div class="feature-card"><span>💾</span><b>حفظ تلقائي</b><small>تقدمك محفوظ على جهازك</small></div>
+      </div>
+    </section>
+
+    <section id="levelsScreen" class="screen">
+      <div class="section-head"><button class="back-btn" data-screen="homeScreen">→ الرئيسية</button><div><h2>خريطة المجرات</h2><p>افتح المراحل بالتدريج — أمامك رحلة طويلة!</p></div><div class="level-progress" id="levelProgress">1 / 1200</div></div>
+      <div class="world-tabs" id="worldTabs"></div>
+      <div class="level-grid" id="levelGrid"></div>
+    </section>
+
+    <section id="gameScreen" class="screen">
+      <div class="game-head"><button class="back-btn" data-screen="homeScreen">✕ خروج</button><div class="stage-label"><small id="worldName">المجرة الأولى</small><b id="stageNumber">المرحلة 1</b></div><div class="game-score">⭐ <b id="runScore">0</b></div></div>
+      <div class="game-scene" id="gameScene"><div class="scene-stars"></div><div class="scene-planet" id="scenePlanet"></div><div class="scene-moon">🌙</div><div class="scene-ship">🚀</div><div class="scene-ground"></div><div class="scene-caption" id="sceneCaption">مرحباً أيها المستكشف!</div></div>
+      <div class="question-card">
+        <div class="question-meta"><span id="questionCategory">علوم الفضاء</span><span id="questionCounter">السؤال 1 من 1000+</span></div>
+        <h2 id="questionText">جارٍ تجهيز التحدي...</h2>
+        <div id="answers" class="answers"></div>
+        <div class="feedback" id="feedback" aria-live="polite"></div>
+        <div class="question-actions"><button id="hintBtn" class="small-btn">💡 تلميح</button><button id="skipBtn" class="small-btn">⏭ تخطي</button><button id="nextBtn" class="next-btn" disabled>التالي ←</button></div>
+      </div>
+    </section>
+
+    <section id="statsScreen" class="screen">
+      <div class="section-head"><button class="back-btn" data-screen="homeScreen">→ الرئيسية</button><div><h2>إحصائياتي</h2><p>تابع تقدمك في استكشاف الكون</p></div></div>
+      <div class="stats-grid"><div class="stat-box"><span>🗺️</span><b id="statLevels">1</b><small>مرحلة مفتوحة</small></div><div class="stat-box"><span>⭐</span><b id="statStars">0</b><small>نجمة مجمعة</small></div><div class="stat-box"><span>🧠</span><b id="statCorrect">0</b><small>إجابة صحيحة</small></div><div class="stat-box"><span>🎯</span><b id="statAccuracy">0%</b><small>نسبة الدقة</small></div></div>
+      <div class="wide-panel"><h3>🚀 سجل الرحلة</h3><p id="journeyLog">لم تبدأ رحلتك بعد. أول خطوة في انتظارك!</p><div class="big-progress"><div id="bigProgressFill"></div></div><small id="bigProgressText">0 من 1200 مرحلة</small></div>
+    </section>
+
+    <section id="achievementsScreen" class="screen">
+      <div class="section-head"><button class="back-btn" data-screen="homeScreen">→ الرئيسية</button><div><h2>قاعة الإنجازات</h2><p>كل خطوة تقربك من لقب مستكشف الكون</p></div></div>
+      <div class="achievement-list" id="achievementList"></div>
+    </section>
+
+    <section id="aboutScreen" class="screen">
+      <div class="section-head"><button class="back-btn" data-screen="homeScreen">→ الرئيسية</button><div><h2>عن اللعبة</h2><p>كل مجرة تخبئ حكاية جديدة</p></div></div>
+      <div class="about-panel"><div class="about-logo">🌌🚀</div><h2>رحلة الفضاء اللانهائية</h2><p>لعبة مغامرات وأسئلة فضائية تعمل بالكامل دون إنترنت. استكشف 12 مجرة، وافتح أكثر من 1200 مرحلة، واختبر معلوماتك عبر بنك أسئلة متجدد يضم أكثر من ألف سؤال وتحدٍ.</p><div class="about-features"><span>✅ تعمل أوفلاين</span><span>✅ حفظ تلقائي</span><span>✅ وضع ليلي ونهاري</span><span>✅ صور كواكب مولدة داخل اللعبة</span></div><div class="developer">⭐ تم تطوير بواسطة المبرمج<br><b>معاذ محمد عبد النبي</b> ⭐</div><small class="version">الإصدار 1.0 — مغامرة محلية بدون API</small></div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="settingsModal">
+    <div class="modal"><button class="modal-close" data-close="settingsModal">×</button><h2>⚙️ إعدادات الرحلة</h2>
+      <label class="setting-row"><span>الوضع الليلي</span><input type="checkbox" id="darkToggle" checked></label>
+      <label class="setting-row"><span>المؤثرات الصوتية</span><input type="checkbox" id="soundToggle" checked></label>
+      <label class="setting-row"><span>حركة النجوم</span><input type="checkbox" id="motionToggle" checked></label>
+      <label class="setting-row"><span>حجم النص</span><select id="fontSize"><option value="normal">عادي</option><option value="large">كبير</option></select></label>
+      <button class="main-btn full" id="saveSettings">حفظ الإعدادات</button>
+      <button class="danger-btn" id="resetBtn">إعادة ضبط التقدم</button>
+      <small>لا يوجد مفتاح API أو اتصال بالإنترنت في هذه النسخة.</small>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <footer>صنع بشغف لعشاق المغامرة الفضائية • <b>معاذ محمد عبد النبي</b></footer>
+  <script src="script.js"></script>
+</body>
+</html>
